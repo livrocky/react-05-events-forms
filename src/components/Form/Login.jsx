@@ -1,19 +1,61 @@
 // Login.jsx componentas
+import { useState } from 'react';
+
 function Login() {
-  function displayValue() {
-    console.log('DisplayValue called');
+  const [usernameValue, setUsernameValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [showUsername, setShowUsername] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  /**
+   * take input value from input and update state with it
+   */
+  function usernameEnterHandler(event) {
+    // console.log('entering value to input');
+    // console.log(event.target); // ===  <input type='text' placeholder='Login here' />
+    const inputEl = event.target;
+    const ivestaReikme = inputEl.value;
+    setUsernameValue(ivestaReikme);
   }
+
+  function passwordEnterHandler(event) {
+    setPasswordValue(event.target.value);
+  }
+
+  // prideti slaptazodio ivesties lauka
+  // sujungti slaptazodi su state two way binding
+  // isvalyti slaptazodi mygtuko paspaudimu
+
   return (
     <div className='login'>
-      {/* // vienas input type text */}
-      <input type='text' placeholder='Login here' />
-      {/* // vienas button */}
-      <button onClick={displayValue}>Submit</button>
+      <input onChange={usernameEnterHandler} value={usernameValue} type='text' placeholder='Login here' />
+      <input onChange={passwordEnterHandler} value={passwordValue} type='password' placeholder='Enter Password Here' />
+      <h3>Jus ivedete: {usernameValue}</h3>
+
+      <button onClick={sendValues}>send</button>
+      {showUsername && <h2>{usernameValue}</h2>}
+      {showUsername && <h2>{usernameValue}</h2>}
     </div>
   );
+
+  function sendValues() {
+    // send values
+    // pagaminti objekta is input reiksmiu
+    const loginObj = {
+      username: usernameValue,
+      password: passwordValue,
+    };
+    console.log('loginObj===', loginObj);
+    // clear inputs
+    setUsernameValue('');
+    setPasswordValue('');
+  }
+
+  function displayValue() {
+    console.log('displayValue called');
+    setShowUsername(!showUsername);
+    setShowPassword(!showPassword);
+  }
 }
-// sukurti displayValue funkcija su test console.log
-// paspaudus button iskvieciam funkcija displayValue
-// sukurti state kuriam saugosim username
 
 export default Login;
