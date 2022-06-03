@@ -5,7 +5,7 @@ import Login from './components/Form/Login';
 function App() {
   return (
     <div className='App'>
-      <h1>Heloo again world</h1>
+      <h1>Hello again world</h1>
       {/* TODO: add multipe counters with titles */}
       {/* <Counter /> */}
       <Login />
